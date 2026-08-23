@@ -1,9 +1,8 @@
--- Бездротовий модем сам знайде пристрої поруч
-local env = peripheral.find("environmentDetector")
-local monitor = peripheral.find("monitor")
+local env = peripheral.wrap("environmentDetector_0")
+local monitor = peripheral.wrap("monitor_5")
 
 if not env or not monitor then
-    print("Error: Detector or Monitor not in wireless range!")
+    print("Error: Detector or Monitor not found!")
     return
 end
 
@@ -12,27 +11,23 @@ monitor.clear()
 
 while true do
     monitor.setCursorPos(1, 1)
-    monitor.write("=== METEO STATION ===")
+    monitor.write("=== METEO ===")
     
     local time = env.getTime()
     local isRaining = env.isRaining()
     local isThundering = env.isThundering()
-    local dimension = env.getDimension()
     
     monitor.setCursorPos(1, 3)
     monitor.write("Time: " .. tostring(time))
     
     monitor.setCursorPos(1, 4)
     if isThundering then
-        monitor.write("Weather: Thunder ⚡")
+        monitor.write("Weather: Thunder")
     elseif isRaining then
-        monitor.write("Weather: Rain 🌧️")
+        monitor.write("Weather: Rain")
     else
-        monitor.write("Weather: Clear ☀️")
+        monitor.write("Weather: Clear")
     end
-    
-    monitor.setCursorPos(1, 6)
-    monitor.write("Dim: " .. tostring(dimension))
     
     os.sleep(2)
     monitor.clear()
