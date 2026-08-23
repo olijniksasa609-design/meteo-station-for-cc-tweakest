@@ -1,8 +1,9 @@
-local env = peripheral.wrap("left")
-local monitor = peripheral.wrap("right")
+-- Автоматично шукаємо Environment Detector та Monitor в мережі
+local env = peripheral.find("environmentDetector")
+local monitor = peripheral.find("monitor")
 
 if not env or not monitor then
-    print("Error: Connect Environment Detector and Monitor!")
+    print("Error: Environment Detector or Monitor not found in network!")
     return
 end
 
