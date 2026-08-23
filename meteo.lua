@@ -1,8 +1,9 @@
-local env = peripheral.wrap("environmentDetector_0")
-local monitor = peripheral.wrap("monitor_5")
+-- Бездротовий модем сам знайде пристрої поруч
+local env = peripheral.find("environmentDetector")
+local monitor = peripheral.find("monitor")
 
 if not env or not monitor then
-    print("Error: Could not connect to Detector or Monitor!")
+    print("Error: Detector or Monitor not in wireless range!")
     return
 end
 
